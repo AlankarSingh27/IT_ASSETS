@@ -3,7 +3,7 @@ export interface IContact {
     Employee_Name: string;
     Employee_Id: string;
     Department:string;
-    Email_Id:string;
+    Email_Id?:string;
     Contact_No:string;
     Laptop:string;
     Serial_No:string;

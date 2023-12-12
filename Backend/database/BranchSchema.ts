@@ -4,7 +4,7 @@ import {IBranch} from "../model/IBranch";
 const BranchSchema = new mongoose.Schema<IBranch>({
     Branches:{type: String, required: true},
     Contact_Person:{type: String, required: true},
-    Person_Contact:{type: String, required: true,unique:true},
+    Person_Contact:{type: String},
     Branch_Address:{type: String, required: true},
     Laptop_Manufacture:{type: String, required: true},
     Laptop_SerialNo:{type: String, required: true},

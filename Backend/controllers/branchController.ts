@@ -82,16 +82,19 @@ export const createBranch = async (request: Request, response: Response) => {
             Status,
             HandoverDate,
             Remarks} = request.body;
-
+            if (!('Person_Contact' in request.body)) {
+                Person_Contact= ""; // Set to null or handle accordingly
+            }
+            //
         // check if the mobile exists
-        let contact = await BranchTable.findOne({Person_Contact: Person_Contact});
-        if (contact) {
-            return response.status(400).json({
-                status: APP_STATUS.FAILED,
-                data: null,
-                error: "Mobile number is already exists"
-            });
-        }
+        // let contact = await BranchTable.findOne({Person_Contact: Person_Contact});
+        // if (contact) {
+        //     return response.status(400).json({
+        //         status: APP_STATUS.FAILED,
+        //         data: null,
+        //         error: "Mobile number is already exists"
+        //     });
+        // }
         // create
         let theContactObj: IBranch = {
             Branches:Branches,
@@ -146,7 +149,9 @@ export const updateBranch = async (request: Request, response: Response) => {
             Status,
             HandoverDate,
             Remarks} = request.body;
-
+            if (!('Person_Contact' in request.body)) {
+                Person_Contact= ""; // Set to null or handle accordingly
+            }
         // check if the contact exists
         const mongoContactId = new mongoose.Types.ObjectId(contactId);
         let contact: IBranch | null | undefined = await BranchTable.findById(mongoContactId);

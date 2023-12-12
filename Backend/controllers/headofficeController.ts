@@ -74,7 +74,9 @@ export const createContact = async (request: Request, response: Response) => {
     try {
         // read the form data
         let {Employee_Name, Employee_Id, Department, Email_Id,Contact_No, Laptop, Serial_No, HandoverDate,Status,Remarks} = request.body;
-
+        if (!('Email_Id' in request.body)) {
+            Email_Id = ""; // Set to null or handle accordingly
+        }
         // check if the mobile exists
         let contact = await HeadOfficeTable.findOne({Contact_No: Contact_No});
         if (contact) {
@@ -127,7 +129,9 @@ export const updateContact = async (request: Request, response: Response) => {
        
         // read the form data
         let {Employee_Name, Employee_Id, Department, Email_Id,Contact_No, Laptop, Serial_No, HandoverDate,Status,Remarks} = request.body;
-
+        if (Email_Id === undefined) {
+            Email_Id= ""; // Set to null or handle accordingly
+        }
         // check if the contact exists
         const mongoContactId = new mongoose.Types.ObjectId(contactId);
         let contact: IContact | null | undefined = await HeadOfficeTable.findById(mongoContactId);

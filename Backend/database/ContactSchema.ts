@@ -5,7 +5,7 @@ const HeadOfficeSchema = new mongoose.Schema<IContact>({
     Employee_Name: {type: String, required: true},
     Employee_Id: {type: String, required: true,unique:true},
     Department: {type: String, required: true},
-    Email_Id: {type: String, required: true,unique:true},
+    Email_Id: {type: String},
     Contact_No: {type: String, required: true,unique:true},
     Laptop: {type: String, required: true},
     Serial_No: {type: String, required: true},
