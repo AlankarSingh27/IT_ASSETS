@@ -2,7 +2,7 @@ import {IBranchView} from "../models/IBranchView";
 import axios from 'axios';
 
 export class BranchService {
-    private static serverUrl: string = `https://sfpl-assets.onrender.com`;
+    private static serverUrl: string = `https://itasset.onrender.com`;
 
     /**
      @usage : to get all contacts
