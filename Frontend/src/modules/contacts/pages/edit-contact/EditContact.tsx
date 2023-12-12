@@ -182,7 +182,7 @@ export const EditContact: React.FC = () => {
                                 </div>
                                 <div className="mb-2">
                                     <input
-                                        required={true}
+                                       
                                         name={'Email_Id'}
                                         value={editContact.Email_Id}
                                         onChange={e => updateEditInput(e)}
@@ -279,7 +279,7 @@ export const EditContact: React.FC = () => {
                                 </div>
                                 <div className="mb-2">
                                     <input
-                                        required={true}
+                                        
                                         name={'Email_Id'}
                                         value={contact.Email_Id}
                                         onChange={e => updateCreateInput(e)}

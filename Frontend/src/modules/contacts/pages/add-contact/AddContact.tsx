@@ -99,7 +99,7 @@ export const AddContact: React.FC = () => {
                                 </div>
                                 <div className="mb-2">
                                     <input
-                                        required={true}
+                                       
                                         name={'Email_Id'}
                                         value={contact.Email_Id}
                                         onChange={e => updateInput(e)}

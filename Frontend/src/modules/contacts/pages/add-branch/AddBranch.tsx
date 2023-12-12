@@ -92,7 +92,6 @@ export const BranchContact: React.FC = () => {
                                 </div>
                                 <div className="mb-2">
                                     <input
-                                        required={true}
                                         name={'Person_Contact'}
                                         value={contact.Person_Contact}
                                         onChange={e => updateInput(e)}
