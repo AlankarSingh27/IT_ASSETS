@@ -96,6 +96,7 @@ export const BranchAdmin: React.FC = () => {
                                             <th>Printer_SerialNo</th>
                                             <th>Status</th>
                                             <th>HandoverDate</th>
+                                            <th>Remarks</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -117,6 +118,7 @@ export const BranchAdmin: React.FC = () => {
                                                   month: 'short',
                                                   day: '2-digit',
                                                  })}</td>
+                                                 <td>{contact.Remarks}</td>
                                                  <td><td><Link className="btn btn-primary m-1" to={`/branches/edit/${contact._id}`}>
                                                         <i className="bi bi-pencil-square"></i>
                                                     </Link></td></td>
