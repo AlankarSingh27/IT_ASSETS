@@ -206,7 +206,7 @@ export const EditBranch: React.FC = () => {
                                 <div className="mb-2">
                                     <input
                                         required={true}
-                                        name={' Printer_SerialNo'}
+                                        name={'Printer_SerialNo'}
                                         value={contact.Printer_SerialNo}
                                         onChange={e => updateInput(e)}
                                         className="form-control" placeholder=" Printer SerialNo" type="text"/>
