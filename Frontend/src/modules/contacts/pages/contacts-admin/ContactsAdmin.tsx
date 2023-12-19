@@ -1,4 +1,4 @@
-
+import * as XLSX from "xlsx";
 import React, { useEffect, useState } from 'react';
 import NavBar from "../../../layout/pages/navbar/NavBar";
 import Heading from "../../../layout/components/heading/Heading";
@@ -33,6 +33,54 @@ export const ContactsAdmin: React.FC = () => {
     const makeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(event.target.value);
     };
+    const exportToExcel = () => {
+    const wsData = [
+        [
+          "S.No",
+          "Date",
+          "Employee_Name",
+          "Employee_Id",
+          "Department",
+          "Email_Id",
+          "Contact_No",
+          "Laptop",
+          "Serial_No",
+          "HandoverDate",
+          "Ststus",
+          "Remarks",
+        ],
+      ];
+      
+     
+  
+      // Add data from the repeatedDates to wsData
+    contacts.forEach((entry: any, index: any) => {
+        wsData.push([
+          index + 1,
+          entry.date,
+          entry.Employee_Name,
+          entry.Employee_Id, 
+          entry.Department,
+          entry.Email_Id, 
+          entry.Contact_No,
+          entry.Laptop, 
+          entry.Serial_No,
+          new Date(entry.HandoverDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: '2-digit',
+           }),
+          entry.Status,
+          entry.Remarks
+        ]);
+      });
+      const ws = XLSX.utils.aoa_to_sheet(wsData);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "XLIRR Data");
+  
+      // Save the file with a name, for example: XLIRRData.xlsx
+      XLSX.writeFile(wb, "XLIRRData.xlsx");
+    };
    
     const filteredContacts: any[] = contacts.filter((contact: any) => {
        
@@ -47,6 +95,7 @@ export const ContactsAdmin: React.FC = () => {
         return matchesEmployeeName || matchesEmployeeId || matchesDepartment || matchesLaptopSerial|| matchesStatus;
       
       });
+      
       
     return (
         <>
@@ -81,6 +130,11 @@ export const ContactsAdmin: React.FC = () => {
             {filteredContacts.length > 0 ? (
                 <section className='mt-3'>
                     <div className="container">
+                    <div className="col">
+        <button className="btn btn-success" onClick={exportToExcel}>
+          Export to Excel
+        </button>
+      </div>
                         <div className="row">
                             <div className="col">
                                 <table className="table table-striped table-hover text-center table-sm">
@@ -139,6 +193,7 @@ export const ContactsAdmin: React.FC = () => {
                     </div>
                 </div>
             )}
+
         </>
     );
 };

@@ -8,7 +8,7 @@ import * as branchActions from "../../../../redux/branches/branches.actions";
 import * as branchReducer from "../../../../redux/branches/branches.slice";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../../../../redux/store";
-
+import * as XLSX from "xlsx";
 
 export const BranchAdmin: React.FC = () => {
     const dispatch: AppDispatch = useAppDispatch();
@@ -25,13 +25,62 @@ export const BranchAdmin: React.FC = () => {
     });
 
     const { loading, branches, error } = branchState;
-    // const [filteredContacts, setFilteredContacts] = useState(contacts);
+    
     useEffect(() => {
         dispatch(branchActions.getAllBranchesAction());
     }, []);
     const makeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(event.target.value);
     };
+    const exportToExcel = () => {
+        const wsData = [
+            [
+                "SNo",
+                "Branches",
+                "Contact_Person",
+                "Person_Contact",
+                "Branch_Address",
+                "Laptop_Manufacture",
+                "Laptop_SerialNo",
+                "Printer_Manufacture",
+                "Printer_SerialNo",
+                "Status",
+                "HandoverDate",
+                "Remarks"
+                
+            ],
+          ];
+          
+         
+      
+          // Add data from the repeatedDates to wsData
+          branches.forEach((entry: any, index: any) => {
+            wsData.push([
+              index + 1,
+              entry.Branches,
+              entry.Contact_Person,
+              entry.Person_Contact, 
+              entry.Branch_Address,
+              entry.Laptop_Manufacture, 
+              entry.Laptop_SerialNo,
+              entry.Printer_Manufacture, 
+              entry.Printer_SerialNo,
+              entry.Status,
+              new Date(entry.HandoverDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: '2-digit',
+               }),
+              entry.Remarks
+            ]);
+          });
+          const ws = XLSX.utils.aoa_to_sheet(wsData);
+          const wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, ws, "XLIRR Data");
+      
+          // Save the file with a name, for example: XLIRRData.xlsx
+          XLSX.writeFile(wb, "XLIRRData.xlsx");
+        };
    
     const filteredContacts: any[] = branches.filter((contact: any) => {
        
@@ -80,6 +129,11 @@ export const BranchAdmin: React.FC = () => {
             {filteredContacts.length > 0 ? (
                 <section className='mt-3'>
                     <div className="container">
+                        <div className="col">
+                        <button className="btn btn-success" onClick={exportToExcel}>
+                         Export to Excel
+                        </button>
+                        </div>
                         <div className="row">
                             <div className="col">
                                 <table className="table table-sm table-striped table-hover text-center">
