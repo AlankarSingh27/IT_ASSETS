@@ -58,12 +58,14 @@ export class DBUtil {
 
         // Access your existing model or create a new one if necessary
         const YourModel = mongoose.model('branches', BranchSchema);
-
-        // Update existing documents to include the new field
-        try {
-            await YourModel.updateMany({}, { $set: { Branch_Code: "" } });
-        } catch (err) {
-            throw new Error("Failed to update documents: " + err);
+        const schema = YourModel.schema as mongoose.Schema<IBranch>;
+        if (!schema.path('Branch_Code')) {
+            // Define the update operation only if the field doesn't exist
+            try {
+                await YourModel.updateMany({}, { $set: { Branch_Code: "" } });
+            } catch (err) {
+                throw new Error("Failed to update documents: " + err);
+            }
         }
     }
 }
