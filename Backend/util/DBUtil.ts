@@ -61,7 +61,7 @@ export class DBUtil {
 
         // Update existing documents to include the new field
         try {
-            await YourModel.updateMany({}, { $set: { Branch_Code: "defaultValue" } });
+            await YourModel.updateMany({}, { $set: { Branch_Code: "" } });
         } catch (err) {
             throw new Error("Failed to update documents: " + err);
         }
