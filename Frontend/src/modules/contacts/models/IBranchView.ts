@@ -1,5 +1,6 @@
 export interface IBranchView{
     Branches:string;
+    Branch_Code?:string;
     Contact_Person:string;
     Person_Contact?:string;
     Branch_Address:string;

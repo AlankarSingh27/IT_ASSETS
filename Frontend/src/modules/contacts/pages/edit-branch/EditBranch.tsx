@@ -25,6 +25,7 @@ export const EditBranch: React.FC = () => {
     const {loading, branch: branchRedux, error} = branchState;
     const [contact, setContact] = useState<IBranchView>({
         Branches: "",
+        Branch_Code:"",
         Contact_Person: "",
         Person_Contact: "",
         Branch_Address: "",
@@ -39,6 +40,7 @@ export const EditBranch: React.FC = () => {
     const [createContact, setCreateContact] = useState<IBranchView>({
         Branches: "",
         Contact_Person: "",
+        Branch_Code:"",
         Person_Contact: "",
         Branch_Address: "",
         Laptop_Manufacture: "",
@@ -68,6 +70,7 @@ export const EditBranch: React.FC = () => {
             setContact({
                 Branches: data.Branches || "",
                 Contact_Person: data.Contact_Person || "",
+                Branch_Code: data.Branch_Code || "",
                 Person_Contact: data.Person_Contact || "",
                 Branch_Address: data.Branch_Address || "",
                 Laptop_Manufacture: data.Laptop_Manufacture || "",
@@ -155,6 +158,14 @@ export const EditBranch: React.FC = () => {
                                         value={contact.Branches}
                                         onChange={e => updateInput(e)}
                                         className="form-control" placeholder="Name Branches" type="text"/>
+                                </div>
+                                <div className="mb-2">
+                                    <input
+                                        required={true}
+                                        name={'Branch_Code'}
+                                        value={contact.Branch_Code}
+                                        onChange={e => updateInput(e)}
+                                        className="form-control" placeholder="Branche Code" type="text"/>
                                 </div>
                                 <div className="mb-2">
                                     <input
@@ -257,6 +268,14 @@ export const EditBranch: React.FC = () => {
                                         value={createContact.Branches}
                                         onChange={e => updateCreateInput(e)}
                                         className="form-control" placeholder="Name Branches" type="text"/>
+                                </div>
+                                <div className="mb-2">
+                                    <input
+                                        required={true}
+                                        name={'Branch_Code'}
+                                        value={createContact.Branch_Code}
+                                        onChange={e => updateCreateInput(e)}
+                                        className="form-control" placeholder="Branches Code" type="text"/>
                                 </div>
                                 <div className="mb-2">
                                     <input

@@ -36,6 +36,7 @@ export const BranchAdmin: React.FC = () => {
         const wsData = [
             [
                 "SNo",
+                "Branch_Code",
                 "Branches",
                 "Contact_Person",
                 "Person_Contact",
@@ -58,6 +59,7 @@ export const BranchAdmin: React.FC = () => {
             wsData.push([
               index + 1,
               entry.Branches,
+              entry.Branch_Code,
               entry.Contact_Person,
               entry.Person_Contact, 
               entry.Branch_Address,
@@ -141,6 +143,7 @@ export const BranchAdmin: React.FC = () => {
                                         <tr>
                                             <th>SNo</th>
                                             <th>Branches</th>
+                                            <th>BranchCode</th>
                                             <th>Contact_Person</th>
                                             <th>Person_Contact</th>
                                             <th>Branch_Address</th>
@@ -159,6 +162,7 @@ export const BranchAdmin: React.FC = () => {
                                                 <tr key={index}>
                                                 <td>{index + 1}</td>
                                                 <td>{contact.Branches}</td>
+                                                <td>{contact.Branch_Code}</td>
                                                 <td>{contact.Contact_Person}</td>
                                                 <td>{contact.Person_Contact}</td>
                                                 <td>{contact.Branch_Address}</td>
