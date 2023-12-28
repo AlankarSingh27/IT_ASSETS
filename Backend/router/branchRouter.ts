@@ -16,6 +16,7 @@ branchRouter.get("/",  async (request: Request, response: Response) => {
 
 branchRouter.post("/", [
     body('Branches').not().isEmpty().withMessage("Branches Name is Required"),
+    body('Branch_Code').optional(),
     body('Contact_Person').not().isEmpty().withMessage("Contact Person Name is Required"),
     body('Person_Contact').optional(),
     body('Branch_Address').not().isEmpty().withMessage("Branch Address is Required"),
@@ -31,6 +32,7 @@ branchRouter.post("/", [
 });
 branchRouter.put("/:contactId", [
     body('Branches').not().isEmpty().withMessage("Branches Name is Required"),
+    body('Branch_Code').optional(),
     body('Contact_Person').not().isEmpty().withMessage("Contact Person Name is Required"),
     body('Person_Contact').optional(),
     body('Branch_Address').not().isEmpty().withMessage("Branch Address is Required"),

@@ -3,6 +3,7 @@ import {IBranch} from "../model/IBranch";
 
 const BranchSchema = new mongoose.Schema<IBranch>({
     Branches:{type: String, required: true},
+    Branch_Code:{type:String},
     Contact_Person:{type: String, required: true},
     Person_Contact:{type: String},
     Branch_Address:{type: String, required: true},

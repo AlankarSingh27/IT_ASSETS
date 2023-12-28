@@ -72,6 +72,7 @@ export const createBranch = async (request: Request, response: Response) => {
     try {
         // read the form data
         let {Branches,
+            Branch_Code,
             Contact_Person,
             Person_Contact,
             Branch_Address,
@@ -82,6 +83,9 @@ export const createBranch = async (request: Request, response: Response) => {
             Status,
             HandoverDate,
             Remarks} = request.body;
+            if (!('Branch_Code' in request.body)) {
+                Branch_Code= ""; // Set to null or handle accordingly
+            }
             if (!('Person_Contact' in request.body)) {
                 Person_Contact= ""; // Set to null or handle accordingly
             }
@@ -98,6 +102,7 @@ export const createBranch = async (request: Request, response: Response) => {
         // create
         let theContactObj: IBranch = {
             Branches:Branches,
+            Branch_Code:Branch_Code,
             Contact_Person:Contact_Person,
             Person_Contact: Person_Contact,
             Branch_Address:Branch_Address,
@@ -139,6 +144,7 @@ export const updateBranch = async (request: Request, response: Response) => {
        
         // read the form data
         let {Branches,
+            Branch_Code,
             Contact_Person,
             Person_Contact,
             Branch_Address,
@@ -149,6 +155,9 @@ export const updateBranch = async (request: Request, response: Response) => {
             Status,
             HandoverDate,
             Remarks} = request.body;
+            if (!('Branch_Code' in request.body)) {
+                Branch_Code= ""; // Set to null or handle accordingly
+            }
             if (!('Person_Contact' in request.body)) {
                 Person_Contact= ""; // Set to null or handle accordingly
             }
@@ -165,6 +174,7 @@ export const updateBranch = async (request: Request, response: Response) => {
         // update
         let theContactObj: IBranch | null = {
             Branches:Branches,
+            Branch_Code:Branch_Code,
             Contact_Person:Contact_Person,
             Person_Contact: Person_Contact,
             Branch_Address:Branch_Address,
