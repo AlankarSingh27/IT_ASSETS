@@ -43,7 +43,7 @@ export class DBUtil {
         // Define the schema
         const BranchSchema = new mongoose.Schema({
             Branches:{type: String, required: true},
-            Branch_Code:{type:String,default: "defaultValue"},
+            Branch_Code:{type:String},
             Contact_Person:{type: String, required: true},
             Person_Contact:{type: String},
             Branch_Address:{type: String, required: true},
